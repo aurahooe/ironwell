@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ironwell — the hour on the wall</title>
+  <meta name="description" content="A signed-in wall of short public slips. One piece is featured each hour." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="top">
+    <a class="mark" href="/">
+      <span class="dot"></span>
+      Ironwell
+    </a>
+    <nav>
+      <button type="button" id="wallBtn" class="ghost">Wall</button>
+      <button type="button" id="deskBtn" class="ghost">Desk</button>
+      <button type="button" id="authBtn" class="solid">Sign in</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="hourStage">
+      <p class="kicker"><span id="hourLabel">This hour</span><span class="tick" id="tick">·</span><span id="countdown">—</span></p>
+      <blockquote id="featuredBody">The well is quiet. Public slips rise here when someone marks them open.</blockquote>
+      <p class="by" id="featuredBy"></p>
+    </section>
+
+    <section class="panel hidden" id="authPanel">
+      <h2>Come in</h2>
+      <p class="lede">Email magic link. No password to forget. Your slips stay until you burn them.</p>
+      <form id="authForm">
+        <label>Email<input type="email" id="email" required autocomplete="email" placeholder="you@somewhere.net" /></label>
+        <label>Handle<input type="text" id="handle" minlength="2" maxlength="24" placeholder="ironhand" /></label>
+        <button type="submit" class="solid">Send link</button>
+      </form>
+      <p class="hint" id="authMsg"></p>
+    </section>
+
+    <section class="panel hidden" id="deskPanel">
+      <h2>Your desk</h2>
+      <form id="slipForm">
+        <textarea id="body" maxlength="800" required placeholder="Leave a slip. Keep it private, or put it on the wall."></textarea>
+        <div class="row">
+          <label class="check"><input type="checkbox" id="isPublic" /> Mark public</label>
+          <button type="submit" class="solid">Save slip</button>
+        </div>
+      </form>
+      <ul class="mine" id="mine"></ul>
+    </section>
+
+    <section id="wallSection">
+      <div class="wallhead">
+        <h2>Public wall</h2>
+        <p>Only slips marked public appear here. Private ones stay on your desk.</p>
+      </div>
+      <ul class="wall" id="wall"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Ironwell keeps what you write. The hour turns itself.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js"></script>
+</body>
+</html>
